@@ -75,7 +75,7 @@ const handleRegister = async () => {
     const res = await register(email.value, name.value, password.value)
     if (res.success) {
       localStorage.setItem('token', res.data.token)
-      router.push({ name: 'Login', query: { registered: 'true' } })
+      router.push('/login')
     } else {
       error.value = res.message
     }
