@@ -51,7 +51,7 @@
             Register
           </button>
           <p class="py-2 text-center">
-            Already have an account? <router-link to="/register" class="text-green-500 hover:text-green-400">Register</router-link></p>
+            Already have an account? <router-link to="/login" class="text-green-500 hover:text-green-400">Login</router-link></p>
         </div>
       </form>
     </div>
@@ -74,7 +74,6 @@ const handleRegister = async () => {
   try {
     const res = await register(email.value, name.value, password.value)
     if (res.success) {
-      localStorage.setItem('token', res.data.token)
       router.push('/login')
     } else {
       error.value = res.message
