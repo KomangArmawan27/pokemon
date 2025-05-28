@@ -15,6 +15,14 @@ export async function fetchFavoritePokemons(token, page = 1, limit = 20) {
       },
     })
 
+    // 👇 Handle token expiration / unauthorized
+    if (res.status === 401) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user_email')
+      window.location.href = '/login' // or use router.push('/login') if inside Vue component
+      return
+    }
+
     const json = await res.json()
     if (json.success) {
       return {
@@ -30,7 +38,6 @@ export async function fetchFavoritePokemons(token, page = 1, limit = 20) {
     throw error
   }
 }
-
 
 // create
 export async function createFavoritePokemon({ name, notes, sprite, type, userEmail }) {
