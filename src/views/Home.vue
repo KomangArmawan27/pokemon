@@ -53,7 +53,7 @@ const token = localStorage.getItem('token')
 
 const loadFavorites = async (page = 1) => {
   try {
-    const { items, currentPage: current, totalPages: total } = await fetchFavoritePokemons(token, page)
+    const { items, currentPage: current, totalPages: total } = await fetchFavoritePokemons(page)
 
     // Set image loading flag
     const updatedItems = items.map((pokemon) => ({

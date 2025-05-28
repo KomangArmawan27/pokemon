@@ -1,29 +1,23 @@
-import axios from 'axios'
+import http from './http'
 
-const BASE_URL = 'https://gopoke-production.up.railway.app/api/v1'
+
+const BASE_URL = 'pokemon'
 
 // get
-export async function fetchFavoritePokemons(token, page = 1, limit = 20) {
+export async function fetchFavoritePokemons(page = 1, limit = 20) {
   const userEmail = localStorage.getItem('user_email')
   if (!userEmail) throw new Error('User email not found in localStorage')
 
   try {
-    const res = await fetch(`${BASE_URL}/pokemons?page=${page}&limit=${limit}&user_email=${encodeURIComponent(userEmail)}`, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
+    const res = await http.get(`/pokemons`, {
+      params: {
+        page,
+        limit,
+        user_email: userEmail,
       },
     })
 
-    // 👇 Handle token expiration / unauthorized
-    if (res.status === 401) {
-      localStorage.removeItem('token')
-      localStorage.removeItem('user_email')
-      window.location.href = '#/login' // or use router.push('/login') if inside Vue component
-      return
-    }
-
-    const json = await res.json()
+    const json = res.data
     if (json.success) {
       return {
         items: json.data.items,
@@ -41,28 +35,14 @@ export async function fetchFavoritePokemons(token, page = 1, limit = 20) {
 
 // create
 export async function createFavoritePokemon({ name, notes, sprite, type, userEmail }) {
-  const token = localStorage.getItem('token') 
-
-  if (!token) throw new Error('User is not authenticated')
-
   try {
-    const response = await axios.post(
-      `${BASE_URL}/pokemon/create`,
-      {
-        name,
-        notes,
-        sprite,
-        type,
-        userEmail
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      }
-    )
+    const response = await http.post(`${BASE_URL}/create`, {
+      name,
+      notes,
+      sprite,
+      type,
+      userEmail,
+    })
 
     return response.data
   } catch (error) {
@@ -73,39 +53,28 @@ export async function createFavoritePokemon({ name, notes, sprite, type, userEma
 
 // update
 export async function updateFavoritePokemon(id, data) {
-  const token = localStorage.getItem('token')
-  if (!token) throw new Error('User is not authenticated')
+  try {
+    const response = await http.put(`${BASE_URL}/update`, data, {
+      params: { id },
+    })
 
-  const response = await axios.put(
-    `${BASE_URL}/pokemon/update?id=${id}`,
-    data,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      }
-    }
-  )
-
-  return response.data
+    return response.data
+  } catch (error) {
+    console.error('Error updating Pokémon:', error)
+    throw error
+  }
 }
 
 // delete
 export async function deleteFavoritePokemon(token, id) {
   try {
-    const res = await fetch(`${BASE_URL}/pokemon/delete?id=${id}`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
+    const response = await http.delete(`${BASE_URL}/delete`, {
+      params: { id },
     })
 
-    const json = await res.json()
+    const json = response.data
 
-    if (res.ok && json.success) {
+    if (json.success) {
       return json.message || 'Deleted successfully'
     } else {
       throw new Error(json.message || 'Failed to delete Pokémon')
