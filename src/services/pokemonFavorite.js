@@ -19,7 +19,7 @@ export async function fetchFavoritePokemons(token, page = 1, limit = 20) {
     if (res.status === 401) {
       localStorage.removeItem('token')
       localStorage.removeItem('user_email')
-      window.location.href = '/login' // or use router.push('/login') if inside Vue component
+      window.location.href = '#/login' // or use router.push('/login') if inside Vue component
       return
     }
 
