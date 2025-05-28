@@ -11,7 +11,7 @@
           <router-link
             to="/"
             class="block p-2 rounded hover:bg-gray-200"
-            :class="{ 'bg-gray-300 font-semibold': $route.path === '/' }"
+            :class="{ 'bg-gray-300 font-semibold': ['/', '/pokemon-update'].includes($route.path) }"
           >
             Home
           </router-link>
