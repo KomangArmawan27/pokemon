@@ -1,7 +1,8 @@
 <template>
   <aside class="w-64 bg-gray-100 p-4 h-full border-r border-gray-300">
-    <h2 class="text-xl font-semibold mb-4">
-      <img src="https://static-00.iconduck.com/assets.00/pokemon-icon-2048x738-o3doht5o.png" alt="Logo" class="h-8 inline-block mr-2" />
+    <h2 class="text-xl flex items-center font-semibold mt-3 mb-3 cursor-pointer">
+      <img src="../assets/profile-user.png" alt="Logo" class="h-8 inline-block mr-2" />
+      <p>Komang</p>
     </h2>
     <hr class="mb-4 border-gray-300" />
 
