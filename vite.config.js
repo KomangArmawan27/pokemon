@@ -7,4 +7,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   base: '/pokemon/',
   plugins: [vue(), tailwindcss()],
+
+  server: {
+    historyApiFallback: true
+  }
 })
