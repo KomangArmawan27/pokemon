@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-// import Dashboard from '../views/Dashboard.vue'
 import PokemonList from '../views/PokemonList.vue'
 import AddPokemon from '../views/AddPokemon.vue'
 import UpdatePokemon from '../views/UpdatePokemon.vue'
@@ -15,8 +13,6 @@ const routes = [
 
   // main application routes
   { path: '/', name: 'Home', component: Home, meta: { requiresAuth: true }},
-  { path: '/about', name: 'About', component: About, meta: { requiresAuth: true }},
-  // { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true }},
   { path: '/pokemon-list', name: 'PokemonList', component: PokemonList, meta: { requiresAuth: true }},
   { path: '/pokemon-add', name: 'AddPokemon', component: AddPokemon, meta: { requiresAuth: true }},
   { path: '/pokemon-update', name: 'UpdatePokemon', component: UpdatePokemon, meta: { requiresAuth: true }},

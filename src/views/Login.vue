@@ -61,6 +61,7 @@ const handleLogin = async () => {
     if (res.success) {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user_email', res.data.email)
+      localStorage.setItem('user_name', res.data.username)
       router.push('/')
     } else {
       error.value = res.message
