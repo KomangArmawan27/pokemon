@@ -4,7 +4,7 @@ import http from './http'
 const BASE_URL = 'pokemon'
 
 // get
-export async function fetchFavoritePokemons(page = 1, limit = 20) {
+export async function fetchFavoritePokemons(page = 1, limit = 20, pokemon_name, pokemon_type, user_notes, field_sort_by, sort_order) {
   const userEmail = localStorage.getItem('user_email')
   if (!userEmail) throw new Error('User email not found in localStorage')
 
@@ -14,6 +14,11 @@ export async function fetchFavoritePokemons(page = 1, limit = 20) {
         page,
         limit,
         user_email: userEmail,
+        name: pokemon_name,
+        type: pokemon_type,
+        notes: user_notes,
+        sort_by: field_sort_by,
+        order: sort_order
       },
     })
 
