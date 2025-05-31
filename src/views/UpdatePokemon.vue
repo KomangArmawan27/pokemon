@@ -1,10 +1,10 @@
 <template>
   <MainLayout>
-    <div class="flex p-2 gap-4">
+    <div class="flex flex-col justify-center items-center md:flex-row p-2 gap-4">
         <img 
             :src="selectedPokemon?.image || placeholderImage" 
             :alt="selectedPokemon?.name || 'Pokemon Placeholder'" 
-            class="w-2/4 h-auto object-contain" />
+            class="md:w-2/4 h-auto object-contain" />
         <PokemonForm
             :name="selectedPokemon.name"
             :type="selectedPokemon.type"

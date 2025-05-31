@@ -1,12 +1,12 @@
 <template>
   <aside class="w-64 bg-gray-100 p-4 h-full border-r border-gray-300">
-    <h2 class="text-xl flex items-center font-semibold mt-3 mb-3 cursor-pointer">
+    <h2 class="text-lg md:text-xl flex items-center font-semibold mt-3 mb-3 cursor-pointer">
       <img src="../assets/profile-user.png" alt="Logo" class="h-8 inline-block mr-2" />
       <p class="capitalize">{{ userName || 'Guest' }}</p>
     </h2>
     <hr class="mb-4 border-gray-300" />
 
-    <nav>
+    <nav class="text-sm md:text-base">
       <ul class="space-y-2">
         <li>
           <router-link
@@ -29,7 +29,6 @@
         <li>
           <div
             class="block p-2 rounded hover:bg-gray-200 cursor-pointer"
-            :class="{ 'bg-gray-300 font-semibold': $route.path === '/about' }"
             @click="handleLogout"
             >
             Logout

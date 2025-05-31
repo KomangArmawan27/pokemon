@@ -1,10 +1,10 @@
 <template>
   <form class= "max-w-md w-full mx-auto space-y-4" @submit.prevent="handleSubmit">
-    <h2 class="text-2xl font-semibold text-gray-800">Favorite this Pokémon</h2>
+    <h2 class="text-base md:text-xl lg:text-2xl font-semibold text-gray-800">Favorite this Pokémon</h2>
 
     <!-- Name -->
     <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Pokémon Name</label>
+      <label for="name" class="block text xs md:text-sm font-medium text-gray-700 mb-1">Pokémon Name</label>
       <input
         type="text"
         id="name"
@@ -17,18 +17,18 @@
 
     <!-- Type -->
     <div>
-      <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Pokémon Type</label>
+      <label for="type" class="block text xs md:text-sm font-medium text-gray-700 mb-1">Pokémon Type</label>
       <span 
         v-for="t in type" 
         :key="t" 
-        class="px-4 py-2 mx-1 rounded-full text-sm text-white capitalize" :class="typeColorClass(t)">
+        class="px-4 py-2 mx-1 rounded-full text xs md:text-sm text-white capitalize" :class="typeColorClass(t)">
         {{ t }}
       </span>
     </div>
 
     <!-- Notes -->
     <div>
-      <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+      <label for="notes" class="block text xs md:text-sm font-medium text-gray-700 mb-1">Notes</label>
       <textarea
         id="notes"
         v-model="notes"
