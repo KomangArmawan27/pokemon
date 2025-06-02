@@ -25,7 +25,7 @@ http.interceptors.response.use(
       localStorage.removeItem('token')
 
       // Ensure redirection works in hash-based routing (GitHub Pages)
-      window.location.href = `${window.location.origin}/#/login`
+      window.location.href = `${window.location.origin}pokemon/#/login`
     }
     return Promise.reject(error)
   }
