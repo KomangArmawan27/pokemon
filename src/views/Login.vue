@@ -44,7 +44,7 @@
           </button>
           <p
             class="py-2">
-            Already have an account? <router-link to="/register" class="text-blue-500 hover:text-blue-400">Register</router-link>
+            Don’t have an account? <router-link to="/register" class="text-blue-500 hover:text-blue-400">Register</router-link>
           </p>
         </div>
       </form>
